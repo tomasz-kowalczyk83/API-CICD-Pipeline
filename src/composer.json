@@ -1,0 +1,16 @@
+{
+    "name": "tomk/rest-app-poc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Tomk\\RestAppPoc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tomasz kowalczyk",
+            "email": "tomasz.kowalczyk1983@gmail.com"
+        }
+    ],
+    "require": {}
+}
