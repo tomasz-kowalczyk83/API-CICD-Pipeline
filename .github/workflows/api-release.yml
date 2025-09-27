@@ -1,6 +1,0 @@
-name: API release
-
-on:
-  push:
-    tags:
-      - 'v*.*.*'
