@@ -4,3 +4,33 @@ on:
   pull_request:
     branches: [ "main" ]
     types: [opened, synchronize, edited, reopened, ready_for_review]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+jobs:
+  commit-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 0 means fetch all commit history
+
+      - name: Setup nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # semantic-release is actively maintained and tests on Node LTS versions. currently v20
+
+      - name: Install Commitlint
+        run: npm install @commitlint/config-conventional @commitlint/cli --save-dev
+
+      - name: Debug PR Title
+        run:
+          echo "PR Title ${{ github.event.pull_request.title }}"
+
+      - name: Lint Pull Request Title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "${{ github.event.pull_request.title }}" | npx commitlint || exit 1

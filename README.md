@@ -10,3 +10,7 @@ The pipeline should:
 * publish artifact to Apicurio registry including app version
 
 ![c4-model-diagram](./assets/images/c4.svg)
+
+The project should:
+* use semantic versioning and release
+* project version should be used for publishing openapi artifact 
